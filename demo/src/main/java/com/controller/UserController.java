@@ -5,6 +5,7 @@ import com.dao.bean.User;
 import com.dao.service.OperatorUserService;
 import com.tools.GetId;
 import com.tools.pp;
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -108,5 +109,36 @@ public class UserController {
             throw new MusicException("注册失败");
         }
         return "注册成功!";
+    }
+
+
+    /**
+     * 退出登录
+     * @param curData
+     * @param response
+     * @return
+     * @throws MusicException
+     */
+    @ResponseBody
+    @RequestMapping("/logout")
+    public String logOut(@RequestBody String curData , HttpServletResponse response) throws MusicException{
+        Map<String, Object> curList = (Map<String, Object>) JSONObject.parse(curData);
+
+        return "";
+    }
+
+    /**
+     * 注销用户
+     * @param curData
+     * @param response
+     * @return
+     * @throws MusicException
+     */
+    @ResponseBody
+    @RequestMapping("/logout/delete")
+    public String logOutUser(@RequestBody String curData , HttpServletResponse response) throws MusicException{
+        Map<String, Object> curList = (Map<String, Object>) JSONObject.parse(curData);
+
+        return "";
     }
 }

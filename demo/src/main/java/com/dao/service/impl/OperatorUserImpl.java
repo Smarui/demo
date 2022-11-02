@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created with IntelliJ IDEA.
@@ -114,6 +115,11 @@ public class OperatorUserImpl implements OperatorUserService {
     }
 
 
+    /**
+     * 登录验证
+     * @param curCount
+     * @return
+     */
     @Override
     public String queryLoginUser(String curCount) {
         HashMap<String, Object> map = new HashMap<>();
@@ -123,5 +129,19 @@ public class OperatorUserImpl implements OperatorUserService {
             return res.get(0).getUserPass();
         }
         return null;
+    }
+
+
+    /**
+     * @param curID
+     * @return
+     */
+    @Override
+    public User selectById(String curID) {
+        User user = testMapper.selectById(curID);
+        if (Objects.isNull(user)) {
+            return null;
+        }
+        return user;
     }
 }

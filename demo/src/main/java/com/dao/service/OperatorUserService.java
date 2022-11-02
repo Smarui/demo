@@ -40,6 +40,18 @@ public interface OperatorUserService{
     boolean queryIsUser(String curData , String curKey);
 
 
-
+    /**
+     * 登录验证
+     * @param curCount
+     * @return
+     */
     String queryLoginUser(String curCount);
+
+
+    /**
+     *
+     * @param curID
+     * @return
+     */
+    User selectById(String curID);
 }

@@ -33,6 +33,7 @@ public class User {
     private Date vipDate;
     private Date createTime;
     private String memo;
+    private boolean dr;
 
 
 }
