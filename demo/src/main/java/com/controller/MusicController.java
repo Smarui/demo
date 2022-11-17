@@ -1,7 +1,10 @@
 package com.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,4 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/music")
 public class MusicController {
+
+    /**
+     * 获取所有音乐
+     * 分页获取
+     * 一页最大数 size
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/all")
+    public String getAllMusic(int size){
+        return "";
+    }
 }

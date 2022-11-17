@@ -19,7 +19,7 @@ import java.util.Enumeration;
 public class UserInterceptors implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Enumeration<String> headerNames = request.getHeaderNames();
+        request.setCharacterEncoding("utf-8");
         return true;
     }
 }

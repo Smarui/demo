@@ -1,21 +1,22 @@
 package com.controller;
 
+import com.common.myreturn.CommonReturn;
 import com.config.myextion.MusicException;
 import com.dao.bean.User;
 import com.dao.service.OperatorUserService;
+import com.tools.FormatMessage;
 import com.tools.GetId;
 import com.tools.pp;
 import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.http.HttpRequest;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -28,6 +29,7 @@ import java.util.Objects;
  * @Description:
  */
 @Controller
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 
@@ -41,15 +43,16 @@ public class UserController {
      * @param response
      * @return
      */
+
     @ResponseBody
-    @RequestMapping("/login")
-    public String insertUser(@RequestBody String curData, HttpServletResponse response) throws MusicException {
-        Map<String, Object> curList = (Map<String, Object>) JSONObject.parse(curData);
+    @PostMapping("/login")
+    public String insertUser(@RequestBody String curData, HttpServletResponse response , HttpServletRequest request) throws MusicException {
+        Map<String, Object> curList = FormatMessage.formatMessage(curData);
 
         if (!curList.containsKey("userCount") || curList.get("userCount").equals("")){
             throw new MusicException("账号为空!");
         }
-        if (!curList.containsKey("userPass") || curList.get("userPass").equals("")){
+        if (!curList.containsKey("passWord") || curList.get("passWord").equals("")){
             throw new MusicException("密码为空!");
         }
         String userPass = operatorUserService.queryLoginUser((String) curList.get("userCount"));
@@ -57,10 +60,12 @@ public class UserController {
         if (Objects.isNull(userPass)){
             throw new MusicException("用户不存在!");
         }
-        if (!userPass.equals(curList.get("userPass"))){
+        if (!userPass.equals(curList.get("passWord"))){
             throw new MusicException("密码错误!");
         }
-        return "登录成功!";
+
+        String res = JSONObject.toJSONString(new CommonReturn(CommonReturn.succeed, "登录成功"));
+        return res ;
     }
 
     /**
