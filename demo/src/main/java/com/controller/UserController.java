@@ -64,7 +64,7 @@ public class UserController {
             throw new MusicException("密码错误!");
         }
 
-        String res = JSONObject.toJSONString(new CommonReturn(CommonReturn.succeed, "登录成功"));
+        String res = JSONObject.toJSONString(new CommonReturn(CommonReturn.succeed, "登录成功") );
         return res ;
     }
 

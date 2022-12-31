@@ -3,7 +3,7 @@ package com.dao.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.dao.bean.User;
-import com.dao.mapper.TestMapper;
+import com.dao.mapper.UserMapper;
 import com.dao.service.OperatorUserService;
 import com.tools.GetId;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ public class OperatorUserImpl implements OperatorUserService {
 
 
     @Autowired
-    TestMapper testMapper;
+    UserMapper userMapper;
 
     @Override
     public boolean insertUser(User test, String preString) {
@@ -40,7 +40,7 @@ public class OperatorUserImpl implements OperatorUserService {
         test.setUserPro("1");
         test.setUserLove("1");
         test.setCreateTime(new Date(System.currentTimeMillis()));
-        Integer insert = testMapper.insert(test);
+        Integer insert = userMapper.insert(test);
         return insert==1;
     }
 
@@ -58,7 +58,7 @@ public class OperatorUserImpl implements OperatorUserService {
             }else {
                 Wrapper wrapper = new EntityWrapper();
                 wrapper.eq("id" , id);
-                testMapper.delete(wrapper);
+                userMapper.delete(wrapper);
             }
         } catch (RuntimeException e) {
             log.info(e.getMessage());
@@ -81,7 +81,7 @@ public class OperatorUserImpl implements OperatorUserService {
             }else {
                 Wrapper wrapper = new EntityWrapper();
                 wrapper.eq("id" , id);
-                testMapper.delete(wrapper);
+                userMapper.delete(wrapper);
             }
         } catch (RuntimeException e) {
             log.info(e.getMessage());
@@ -96,7 +96,7 @@ public class OperatorUserImpl implements OperatorUserService {
      */
     @Override
     public void updateUser(User test) {
-        testMapper.updateById(test);
+        userMapper.updateById(test);
     }
 
 
@@ -110,7 +110,7 @@ public class OperatorUserImpl implements OperatorUserService {
     public boolean queryIsUser(String curData , String curKey) {
         HashMap<String, Object> map = new HashMap<>();
         map.put(curKey, curData);
-        List<User> res = testMapper.selectByMap(map);
+        List<User> res = userMapper.selectByMap(map);
         return res.size()==0;
     }
 
@@ -124,7 +124,7 @@ public class OperatorUserImpl implements OperatorUserService {
     public String queryLoginUser(String curCount) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("user_count", curCount);
-        List<User> res = testMapper.selectByMap(map);
+        List<User> res = userMapper.selectByMap(map);
         if (res.size()!=0) {
             return res.get(0).getUserPass();
         }
@@ -138,7 +138,7 @@ public class OperatorUserImpl implements OperatorUserService {
      */
     @Override
     public User selectById(String curID) {
-        User user = testMapper.selectById(curID);
+        User user = userMapper.selectById(curID);
         if (Objects.isNull(user)) {
             return null;
         }

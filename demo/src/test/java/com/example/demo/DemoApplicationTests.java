@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.dao.bean.User;
-import com.dao.mapper.TestMapper;
+import com.dao.mapper.UserMapper;
 import com.dao.service.OperatorUserService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
@@ -17,7 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 class DemoApplicationTests {
 
     @Autowired
-    TestMapper mapper;
+    UserMapper mapper;
 
     @Autowired
     OperatorUserService operatorUserService;

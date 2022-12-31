@@ -1,14 +1,14 @@
 package com.dao.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.dao.bean.User;
+import com.dao.bean.MusicSongs;
 
 /**
  * Created with IntelliJ IDEA.
  *
  * @author:wq
- * @Date: 2022/10/26
+ * @Date: 2022/11/18
  * @Description:
  */
-public interface TestMapper extends BaseMapper<User> {
+public interface MusicSongsMapper extends BaseMapper<MusicSongs> {
 }
